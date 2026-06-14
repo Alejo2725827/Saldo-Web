@@ -1,0 +1,8 @@
+/* Legal Document Styles */
+.prose h1 { @apply text-3xl font-extrabold mb-8 text-gray-900 border-b pb-4; }
+.prose h2 { @apply text-2xl font-bold mt-10 mb-4 text-blue-700; }
+.prose h3 { @apply text-xl font-semibold mt-6 mb-2 text-gray-800; }
+.prose p { @apply text-gray-700 leading-relaxed mb-4; }
+.prose ul { @apply list-disc ml-6 mb-4 space-y-2 text-gray-700; }
+.prose li { @apply mb-1; }
+.prose strong { @apply text-gray-900; }

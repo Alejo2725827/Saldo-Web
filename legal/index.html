@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal - Saldo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Marked.js para renderizar Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .prose h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 2rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #1e40af; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.75; color: #374151; }
+        .prose ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.25rem; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose strong { color: #111827; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+
+    <!-- Header / Nav -->
+    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between h-16 items-center">
+                <a href="../../index.html" class="text-xl font-bold text-blue-600 flex items-center">
+                    <i class="fas fa-wallet mr-2"></i>Saldo
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Selector de Idioma -->
+                    <select id="langSelector" onchange="changeLanguage(this.value)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                        <option value="pt">Português</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Wrapper -->
+    <div class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 py-12 flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="md:w-64 flex-shrink-0">
+            <div class="bg-white rounded-2xl shadow-sm border p-6 sticky top-24">
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Documentación</h3>
+                <nav class="space-y-2">
+                    <button onclick="loadDoc('terms')" id="btn-terms" class="w-full text-left px-4 py-2 rounded-lg font-medium transition text-blue-600 bg-blue-50">
+                        <i class="fas fa-file-contract mr-2 w-5"></i> <span id="label-terms">Términos</span>
+                    </button>
+                    <button onclick="loadDoc('privacy')" id="btn-privacy" class="w-full text-left px-4 py-2 rounded-lg font-medium transition text-gray-600 hover:bg-gray-50">
+                        <i class="fas fa-user-shield mr-2 w-5"></i> <span id="label-privacy">Privacidad</span>
+                    </button>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Markdown Display -->
+        <main class="flex-grow bg-white rounded-2xl shadow-sm border p-8 md:p-12">
+            <div id="content" class="prose max-w-none">
+                <div class="flex justify-center py-20">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t py-8 text-center text-sm text-gray-500">
+        <div class="max-w-5xl mx-auto px-4">
+            &copy; 2026 Saldo. <span id="footer-text">Todos los derechos reservados.</span>
+        </div>
+    </footer>
+
+    <script>
+        // Configuración inicial
+        let currentLang = 'es';
+        let currentDoc = 'terms';
+
+        const translations = {
+            es: { terms: 'Términos y Condiciones', privacy: 'Privacidad', footer: 'Todos los derechos reservados.' },
+            en: { terms: 'Terms & Conditions', privacy: 'Privacy Policy', footer: 'All rights reserved.' },
+            pt: { terms: 'Termos e Condições', privacy: 'Privacidade', footer: 'Todos os direitos reservados.' }
+        };
+
+        // Detectar idioma desde la URL si existe (ej: ?lang=en)
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        const docParam = urlParams.get('doc');
+        
+        if (['es', 'en', 'pt'].includes(langParam)) currentLang = langParam;
+        if (['terms', 'privacy'].includes(docParam)) currentDoc = docParam;
+
+        document.getElementById('langSelector').value = currentLang;
+
+        function updateUIStrings() {
+            const t = translations[currentLang];
+            document.getElementById('label-terms').innerText = t.terms;
+            document.getElementById('label-privacy').innerText = t.privacy;
+            document.getElementById('footer-text').innerText = t.footer;
+            document.title = `${t[currentDoc]} - Saldo`;
+        }
+
+        async function loadDoc(docId) {
+            currentDoc = docId;
+            const contentDiv = document.getElementById('content');
+            
+            // Actualizar botones
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('text-blue-600', 'bg-blue-50');
+                btn.classList.add('text-gray-600');
+            });
+            document.getElementById(`btn-${docId}`).classList.add('text-blue-600', 'bg-blue-50');
+            document.getElementById(`btn-${docId}`).classList.remove('text-gray-600');
+
+            updateUIStrings();
+
+            try {
+                // Ruta corregida: relativa al directorio legal/
+                const response = await fetch(`${currentLang}/${docId}.md`);
+                if (!response.ok) throw new Error(`Archivo no encontrado (${response.status})`);
+                const markdown = await response.text();
+                contentDiv.innerHTML = marked.parse(markdown);
+                window.scrollTo(0, 0);
+            } catch (error) {
+                let errorDetail = error.message;
+                if (window.location.protocol === 'file:') {
+                    errorDetail = "El navegador bloquea la carga de archivos locales. Por favor, usa un servidor web local o sube los archivos a GitHub Pages para probar.";
+                }
+                contentDiv.innerHTML = `<div class="text-red-500 p-8 border border-red-100 rounded-2xl bg-red-50">
+                    <h3 class="text-lg font-bold mb-2"><i class="fas fa-exclamation-circle mr-2"></i>Error de carga</h3>
+                    <p>${errorDetail}</p>
+                </div>`;
+            }
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            loadDoc(currentDoc);
+            // Actualizar URL sin recargar
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?lang=${lang}&doc=${currentDoc}`;
+            window.history.pushState({path:newUrl},'',newUrl);
+        }
+
+        // Carga inicial
+        loadDoc(currentDoc);
+    </script>
+</body>
+</html>
