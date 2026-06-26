@@ -10,7 +10,8 @@
     <meta property="og:title" content="Saldo - Gestiona las deudas de tu negocio con facilidad" />
     <meta property="og:description"
         content="Controla tus ventas a crédito de manera sencilla. Lleva el registro de clientes, deudas y pagos desde la palma de tu mano." />
-    <meta property="og:image" content="https://alejandrofragozo.github.io/saldo-web/assets/img/saldo icono 512px.png" />
+    <meta property="og:image"
+        content="https://alejandrofragozo.github.io/saldo-web/assets/img/saldo%20icono%20512px.png" />
     <meta property="og:url" content="https://alejandrofragozo.github.io/saldo-web/" />
     <meta property="og:type" content="website" />
 
@@ -95,18 +96,31 @@
 
                 <!-- Menú Desktop - visible en pantallas medianas y grandes -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-blue-600 font-medium">Funciones</a>
-                    <a href="#plans" class="text-gray-600 hover:text-blue-600 font-medium">Planes</a>
-                    <a href="legal/index.html?lang=es&doc=terms"
-                        class="text-gray-600 hover:text-blue-600 font-medium">Términos</a>
-                    <a href="legal/index.html?lang=es&doc=privacy"
-                        class="text-gray-600 hover:text-blue-600 font-medium">Privacidad</a>
+                    <a href="#features" class="text-gray-600 hover:text-blue-600 font-medium"
+                        data-i18n="nav_features">Funciones</a>
+                    <a href="#plans" class="text-gray-600 hover:text-blue-600 font-medium"
+                        data-i18n="nav_plans">Planes</a>
+                    <a href="legal/index.html?lang=es&doc=terms" class="text-gray-600 hover:text-blue-600 font-medium"
+                        data-i18n="nav_terms" id="nav-terms">Términos</a>
+                    <a href="legal/index.html?lang=es&doc=privacy" class="text-gray-600 hover:text-blue-600 font-medium"
+                        data-i18n="nav_privacy" id="nav-privacy">Privacidad</a>
                 </div>
 
+
+
                 <div class="flex items-center gap-3">
+                    <!-- Selector de Idioma -->
+                    <select id="langSelector" onchange="changeLanguage(this.value)"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                        <option value="pt">Português</option>
+                    </select>
+
                     <!-- Botón Descargar (visible siempre) -->
                     <a href="#"
-                        class="gradient-bg text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition hidden sm:inline-block">
+                        class="gradient-bg text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition hidden sm:inline-block"
+                        data-i18n="nav_download">
                         Descargar
                     </a>
 
@@ -123,23 +137,28 @@
                 <div class="flex flex-col space-y-3 pt-4">
                     <a href="#features" onclick="closeMobileMenu()"
                         class="text-gray-600 hover:text-blue-600 font-medium px-2 py-2 hover:bg-gray-50 rounded-lg transition">
-                        <i class="fas fa-th-large mr-3 w-6 text-blue-500"></i> Funciones
+                        <i class="fas fa-th-large mr-3 w-6 text-blue-500"></i> <span
+                            data-i18n="nav_features">Funciones</span>
                     </a>
                     <a href="#plans" onclick="closeMobileMenu()"
                         class="text-gray-600 hover:text-blue-600 font-medium px-2 py-2 hover:bg-gray-50 rounded-lg transition">
-                        <i class="fas fa-crown mr-3 w-6 text-yellow-500"></i> Planes
+                        <i class="fas fa-crown mr-3 w-6 text-yellow-500"></i> <span data-i18n="nav_plans">Planes</span>
                     </a>
                     <a href="legal/index.html?lang=es&doc=terms" onclick="closeMobileMenu()"
-                        class="text-gray-600 hover:text-blue-600 font-medium px-2 py-2 hover:bg-gray-50 rounded-lg transition">
-                        <i class="fas fa-file-contract mr-3 w-6 text-blue-500"></i> Términos
+                        class="text-gray-600 hover:text-blue-600 font-medium px-2 py-2 hover:bg-gray-50 rounded-lg transition"
+                        id="mobile-nav-terms">
+                        <i class="fas fa-file-contract mr-3 w-6 text-blue-500"></i> <span
+                            data-i18n="nav_terms">Términos</span>
                     </a>
                     <a href="legal/index.html?lang=es&doc=privacy" onclick="closeMobileMenu()"
-                        class="text-gray-600 hover:text-blue-600 font-medium px-2 py-2 hover:bg-gray-50 rounded-lg transition">
-                        <i class="fas fa-user-shield mr-3 w-6 text-green-500"></i> Privacidad
+                        class="text-gray-600 hover:text-blue-600 font-medium px-2 py-2 hover:bg-gray-50 rounded-lg transition"
+                        id="mobile-nav-privacy">
+                        <i class="fas fa-user-shield mr-3 w-6 text-green-500"></i> <span
+                            data-i18n="nav_privacy">Privacidad</span>
                     </a>
                     <a href="#" onclick="closeMobileMenu()"
                         class="gradient-bg text-white text-center px-4 py-3 rounded-xl font-semibold hover:opacity-90 transition mt-2">
-                        <i class="fas fa-download mr-2"></i> Descargar
+                        <i class="fas fa-download mr-2"></i> <span data-i18n="nav_download">Descargar</span>
                     </a>
                 </div>
             </div>
@@ -149,19 +168,20 @@
     <!-- Hero Section -->
     <header class="gradient-bg text-white py-20 px-4">
         <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6">Controla las deudas de tu negocio con facilidad</h1>
-            <p class="text-xl md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6" data-i18n="hero_title">Controla las deudas de tu
+                negocio con facilidad</h1>
+            <p class="text-xl md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto" data-i18n="hero_subtitle">
                 Lleva el registro de quién te debe, cuánto te debe y cuándo te han pagado. La herramienta definitiva
                 para administrar tus ventas a crédito.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#"
                     class="bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-bold hover:bg-gray-100 transition shadow-lg">
-                    <i class="fab fa-google-play mr-2"></i>Google Play
+                    <i class="fab fa-google-play mr-2"></i> <span data-i18n="hero_googleplay">Google Play</span>
                 </a>
                 <a href="#features"
                     class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-white hover:text-blue-600 transition">
-                    Ver Funciones
+                    <span data-i18n="hero_features">Ver Funciones</span>
                 </a>
             </div>
         </div>
@@ -173,25 +193,25 @@
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <!-- Texto -->
                 <div class="md:w-1/2 text-center md:text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #09184D;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #09184D;" data-i18n="preview_title">
                         Gestiona tus créditos desde cualquier lugar
                     </h2>
-                    <p class="text-gray-600 text-lg mb-6">
+                    <p class="text-gray-600 text-lg mb-6" data-i18n="preview_description">
                         Con Saldo puedes llevar el control de tus ventas a crédito de manera sencilla y rápida,
                         todo desde la palma de tu mano.
                     </p>
                     <ul class="space-y-3">
                         <li class="flex items-center text-gray-700">
                             <i class="fas fa-check-circle mr-3" style="color: #09184D;"></i>
-                            Registro rápido de clientes
+                            <span data-i18n="preview_feature1">Registro rápido de clientes</span>
                         </li>
                         <li class="flex items-center text-gray-700">
                             <i class="fas fa-check-circle mr-3" style="color: #09184D;"></i>
-                            Control de deudas y pagos
+                            <span data-i18n="preview_feature2">Control de deudas y pagos</span>
                         </li>
                         <li class="flex items-center text-gray-700">
                             <i class="fas fa-check-circle mr-3" style="color: #09184D;"></i>
-                            Sincronización automática
+                            <span data-i18n="preview_feature3">Sincronización automática</span>
                         </li>
                     </ul>
                 </div>
@@ -214,9 +234,10 @@
                                     <div class="w-3 h-3 bg-gray-800 rounded-full mx-auto mt-1"></div>
                                 </div>
 
-                                <!-- Captura de pantalla -->
-                                <img src="assets/img/app-screenshot.png" alt="Captura de la app Saldo"
-                                    class="w-full h-auto rounded-[2rem]" style="min-width: 240px; max-width: 320px;">
+                                <!-- Captura de pantalla - imagen dinámica según idioma -->
+                                <img id="app-screenshot" src="assets/img/app-screenshot_es.png"
+                                    alt="Captura de la app Saldo" class="w-full h-auto rounded-[2rem]"
+                                    style="min-width: 240px; max-width: 320px;">
 
                                 <!-- Botón Home (iOS style) -->
                                 <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2">
@@ -244,9 +265,11 @@
     <section id="features" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Todo lo que necesitas en la palma de tu
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="features_title">Todo lo que
+                    necesitas en la palma de tu
                     mano</h2>
-                <p class="text-gray-600 text-lg">Diseñada específicamente para pequeños negocios y emprendedores.</p>
+                <p class="text-gray-600 text-lg" data-i18n="features_subtitle">Diseñada específicamente para pequeños
+                    negocios y emprendedores.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div class="p-8 border rounded-2xl hover:shadow-xl transition group">
@@ -254,8 +277,9 @@
                         class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
                         <i class="fas fa-users text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Gestión de Clientes</h3>
-                    <p class="text-gray-600">Registra a tus clientes con su información de contacto y establece límites
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feature_clients_title">Gestión de Clientes</h3>
+                    <p class="text-gray-600" data-i18n="feature_clients_desc">Registra a tus clientes con su información
+                        de contacto y establece límites
                         de crédito personalizados.</p>
                 </div>
                 <div class="p-8 border rounded-2xl hover:shadow-xl transition group">
@@ -263,8 +287,9 @@
                         class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition">
                         <i class="fas fa-file-invoice-dollar text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Control de Deudas</h3>
-                    <p class="text-gray-600">Añade ventas a crédito en segundos. Mantén un historial detallado de cada
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feature_debts_title">Control de Deudas</h3>
+                    <p class="text-gray-600" data-i18n="feature_debts_desc">Añade ventas a crédito en segundos. Mantén
+                        un historial detallado de cada
                         movimiento y abono.</p>
                 </div>
                 <div class="p-8 border rounded-2xl hover:shadow-xl transition group">
@@ -272,8 +297,9 @@
                         class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-6 group-hover:bg-purple-600 group-hover:text-white transition">
                         <i class="fas fa-bell text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Recordatorios</h3>
-                    <p class="text-gray-600">Configura notificaciones locales para que nunca olvides realizar un cobro
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feature_reminders_title">Recordatorios</h3>
+                    <p class="text-gray-600" data-i18n="feature_reminders_desc">Configura notificaciones locales para
+                        que nunca olvides realizar un cobro
                         importante.</p>
                 </div>
             </div>
@@ -287,24 +313,29 @@
                 <div class="bg-blue-600 rounded-3xl p-10 shadow-2xl text-white transform rotate-3 hover:rotate-0 transition duration-500 "
                     style="background: #09184D;">
                     <i class="fas fa-cloud-upload-alt text-6xl mb-6"></i>
-                    <h2 class="text-3xl font-bold mb-4 italic">Offline-First</h2>
-                    <p class="text-lg opacity-90">Tus datos siempre están contigo. Saldo funciona perfectamente sin
+                    <h2 class="text-3xl font-bold mb-4 italic" data-i18n="sync_title">Offline-First</h2>
+                    <p class="text-lg opacity-90" data-i18n="sync_description">Tus datos siempre están contigo. Saldo
+                        funciona perfectamente sin
                         internet y sincroniza con la nube automáticamente cuando te conectas.</p>
                 </div>
             </div>
             <div class="md:w-1/2">
-                <h2 class="text-3xl font-bold mb-6 text-gray-900">Seguridad y Respaldo</h2>
-                <p class="text-gray-600 text-lg mb-6">Utilizamos infraestructura de clase mundial (Firebase) para
+                <h2 class="text-3xl font-bold mb-6 text-gray-900" data-i18n="security_title">Seguridad y Respaldo</h2>
+                <p class="text-gray-600 text-lg mb-6" data-i18n="security_description">Utilizamos infraestructura de
+                    clase mundial (Firebase) para
                     asegurar que tu información esté siempre respaldada y disponible en múltiples dispositivos.</p>
                 <ul class="space-y-4">
                     <li class="flex items-center text-gray-700 font-medium">
-                        <i class="fas fa-check-circle text-blue-500 mr-3"></i> Sincronización en tiempo real (Premium)
+                        <i class="fas fa-check-circle text-blue-500 mr-3"></i> <span
+                            data-i18n="security_feature1">Sincronización en tiempo real (Premium)</span>
                     </li>
                     <li class="flex items-center text-gray-700 font-medium">
-                        <i class="fas fa-check-circle text-blue-500 mr-3"></i> Respaldo manual (Plan Gratuito)
+                        <i class="fas fa-check-circle text-blue-500 mr-3"></i> <span
+                            data-i18n="security_feature2">Respaldo manual (Plan Gratuito)</span>
                     </li>
                     <li class="flex items-center text-gray-700 font-medium">
-                        <i class="fas fa-check-circle text-blue-500 mr-3"></i> Trazabilidad legal de consentimientos
+                        <i class="fas fa-check-circle text-blue-500 mr-3"></i> <span
+                            data-i18n="security_feature3">Trazabilidad legal de consentimientos</span>
                     </li>
                 </ul>
             </div>
@@ -312,72 +343,70 @@
     </section>
 
     <!-- Plans Section -->
-    <!-- Plans Section -->
-    <!-- Plans Section -->
     <section id="plans" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-16" style="color: #09184D;">Elige el plan ideal para tu negocio</h2>
-            <p class="text-gray-600 mb-12 text-lg">Precios en Colombia (COP) • IVA incluido</p>
+            <h2 class="text-3xl font-bold mb-16" style="color: #09184D;" data-i18n="plans_title">Elige el plan ideal
+                para tu negocio</h2>
+            <p class="text-gray-600 mb-12 text-lg" data-i18n="plans_subtitle">Precios en Colombia (COP) • IVA incluido
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
 
                 <!-- Plan Mensual -->
                 <div class="border-2 p-10 rounded-3xl shadow-sm transition hover:shadow-md flex flex-col"
                     style="border-color: #e5e7eb;">
-                    <!-- Contenido superior que empuja el botón hacia abajo -->
                     <div class="flex-grow">
-                        <h3 class="text-xl font-bold text-gray-500 mb-2">Plan Mensual</h3>
-                        <div class="text-4xl font-bold mb-2" style="color: #09184D;">$11.500 <span
-                                class="text-lg text-gray-400">/ mes</span></div>
-                        <p class="text-sm text-gray-500 mb-8">Renovación automática cada mes</p>
+                        <h3 class="text-xl font-bold text-gray-500 mb-2" data-i18n="plan_monthly_title">Plan Mensual
+                        </h3>
+                        <div class="text-4xl font-bold mb-2" style="color: #09184D;"><span
+                                data-i18n="plan_monthly_price">$11.500</span> <span class="text-lg text-gray-400"
+                                data-i18n="plan_monthly_period">/ mes</span></div>
+                        <p class="text-sm text-gray-500 mb-8" data-i18n="plan_monthly_renew">Renovación automática cada
+                            mes</p>
                         <ul class="space-y-4 mb-10 text-gray-600">
-                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> Clientes ilimitados</li>
-                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> Sincronización automática</li>
-                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> Sin anuncios</li>
-                            <!-- <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> Soporte prioritario</li> -->
-                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> Periodo de gracia</li>
+                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_monthly_feature1">Clientes ilimitados</span></li>
+                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_monthly_feature2">Sincronización automática</span></li>
+                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_monthly_feature3">Sin anuncios</span></li>
+                            <li><i class="fas fa-check mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_monthly_feature4">Periodo de gracia</span></li>
                         </ul>
                     </div>
-                    <!-- Botón siempre abajo -->
-                    <!-- <a href="#"
-                        class="block text-center border-2 py-3 rounded-xl font-bold transition hover:bg-gray-50 mt-auto"
-                        style="border-color: #09184D; color: #09184D;">
-                        Suscribirse
-                    </a> -->
                 </div>
 
                 <!-- Plan Anual (Recomendado) -->
                 <div class="border-2 p-10 rounded-3xl shadow-xl relative overflow-hidden bg-white flex flex-col"
                     style="border-color: #09184D;">
                     <div class="absolute top-0 right-0 text-white text-xs font-bold px-4 py-1 uppercase rounded-bl-lg"
-                        style="background: #09184D;">
+                        style="background: #09184D;" data-i18n="plan_annual_badge">
                         Mejor Valor
                     </div>
-                    <!-- Contenido superior que empuja el botón hacia abajo -->
                     <div class="flex-grow">
-                        <h3 class="text-xl font-bold mb-2" style="color: #09184D;">Plan Anual</h3>
-                        <div class="text-4xl font-bold mb-2" style="color: #09184D;">$89.000 <span
-                                class="text-lg text-gray-400">/ año</span></div>
-                        <p class="text-sm text-green-600 font-semibold mb-2">Ahorra vs. el plan mensual</p>
-                        <p class="text-sm text-gray-500 mb-8">Renovación automática cada año</p>
+                        <h3 class="text-xl font-bold mb-2" style="color: #09184D;" data-i18n="plan_annual_title">Plan
+                            Anual</h3>
+                        <div class="text-4xl font-bold mb-2" style="color: #09184D;"><span
+                                data-i18n="plan_annual_price">$89.000</span> <span class="text-lg text-gray-400"
+                                data-i18n="plan_annual_period">/ año</span></div>
+                        <p class="text-sm text-green-600 font-semibold mb-2" data-i18n="plan_annual_save">Ahorra vs. el
+                            plan mensual</p>
+                        <p class="text-sm text-gray-500 mb-8" data-i18n="plan_annual_renew">Renovación automática cada
+                            año</p>
                         <ul class="space-y-4 mb-10 text-gray-700">
-                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> Clientes ilimitados</li>
-                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> Sincronización automática</li>
-                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> Sin anuncios</li>
-                            <!-- <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> Soporte prioritario</li> -->
-                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> Periodo de gracia 14 días</li>
-                            <!-- <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> <span
-                                    class="font-semibold">Ahorro del 30%</span></li> -->
+                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_annual_feature1">Clientes ilimitados</span></li>
+                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_annual_feature2">Sincronización automática</span></li>
+                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_annual_feature3">Sin anuncios</span></li>
+                            <li><i class="fas fa-star mr-2" style="color: #09184D;"></i> <span
+                                    data-i18n="plan_annual_feature4">Periodo de gracia 14 días</span></li>
                         </ul>
                     </div>
-                    <!-- Botón siempre abajo -->
-                    <!-- <a href="#"
-                        class="block text-center text-white py-3 rounded-xl font-bold transition hover:opacity-90 mt-auto"
-                        style="background: #09184D;">
-                        Suscribirse
-                    </a> -->
                 </div>
             </div>
-            <p class="text-sm text-gray-400 mt-8">* Los precios pueden variar según tu región. Consulta Google Play para
+            <p class="text-sm text-gray-400 mt-8" data-i18n="plans_disclaimer">* Los precios pueden variar según tu
+                región. Consulta Google Play para
                 precios exactos en tu país.</p>
         </div>
     </section>
@@ -387,7 +416,8 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="md:col-span-2">
                 <div class="text-white text-2xl font-bold mb-6 italic"><i class="fas fa-wallet mr-2"></i>Saldo</div>
-                <p class="max-w-sm mb-6">Simplificando la administración de saldos y créditos para los comerciantes de
+                <p class="max-w-sm mb-6" data-i18n="footer_description">Simplificando la administración de saldos y
+                    créditos para los comerciantes de
                     todo el mundo.</p>
                 <div class="flex space-x-4">
                     <a href="#" class="hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
@@ -395,33 +425,34 @@
                 </div>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">Legal</h4>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider" data-i18n="footer_legal">Legal</h4>
                 <ul class="space-y-3">
-                    <li><a href="legal/index.html?lang=es&doc=privacy"
-                            class="hover:text-white transition">Privacidad</a></li>
-                    <li><a href="legal/index.html?lang=es&doc=terms" class="hover:text-white transition">Términos</a>
+                    <li><a href="legal/index.html?lang=es&doc=privacy" class="hover:text-white transition"
+                            data-i18n="legal_privacy">Privacidad</a></li>
+                    <li><a href="legal/index.html?lang=es&doc=terms" class="hover:text-white transition"
+                            data-i18n="legal_terms">Términos</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">Ayuda</h4>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider" data-i18n="footer_help">Ayuda</h4>
                 <ul class="space-y-3">
-                    <li><a href="#" class="hover:text-white transition">FAQ</a></li>
-                    <li><a href="#" class="hover:text-white transition">Soporte</a></li>
+                    <li><a href="#" class="hover:text-white transition" data-i18n="footer_help_faq">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white transition" data-i18n="footer_help_support">Soporte</a></li>
                 </ul>
             </div>
         </div>
         <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-sm text-center">
-            &copy; 2026 Saldo. Todos los derechos reservados.
+            &copy; 2026 Saldo. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
         </div>
     </footer>
 
     <script>
+        // --- FUNCIONES DEL MENÚ MÓVIL ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             menu.classList.toggle('open');
-            // Cambiar ícono entre hamburguesa y X
             if (menu.classList.contains('open')) {
                 icon.className = 'fas fa-times';
             } else {
@@ -435,6 +466,111 @@
             menu.classList.remove('open');
             icon.className = 'fas fa-bars';
         }
+
+        // --- CARGAR IDIOMA Y TRADUCCIONES ---
+        let currentLang = 'es';
+        let translations = {};
+
+        // Detectar idioma desde la URL (ej: ?lang=en)
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        if (['es', 'en', 'pt'].includes(langParam)) {
+            currentLang = langParam;
+        }
+
+        // Cargar las traducciones desde el JSON
+        async function loadTranslations(lang) {
+            try {
+                const response = await fetch(`assets/translations/${lang}.json`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                translations = await response.json();
+                applyTranslations();
+                updateScreenshot(lang);
+                updateMetaTags(lang);
+            } catch (error) {
+                console.error('Error cargando traducciones:', error);
+                // Si falla, usar español por defecto
+                if (lang !== 'es') {
+                    loadTranslations('es');
+                }
+            }
+
+            updateLegalLinks(lang);
+        }
+
+        // Aplicar traducciones a todos los elementos con data-i18n
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[key]) {
+                    element.textContent = translations[key];
+                }
+            });
+            // Actualizar título de la página
+            if (translations.title) {
+                document.title = translations.title;
+            }
+        }
+
+        // Actualizar la captura de pantalla según el idioma
+        function updateScreenshot(lang) {
+            const img = document.getElementById('app-screenshot');
+            if (img) {
+                img.src = `assets/img/app-screenshot_${lang}.png`;
+                img.alt = translations.preview_title || 'Captura de la app Saldo';
+            }
+        }
+
+        // Actualizar etiquetas meta para WhatsApp y redes sociales
+        function updateMetaTags(lang) {
+            const metaTitle = document.querySelector('meta[property="og:title"]');
+            const metaDescription = document.querySelector('meta[property="og:description"]');
+            const metaImage = document.querySelector('meta[property="og:image"]');
+
+            if (metaTitle && translations.title) {
+                metaTitle.setAttribute('content', `Saldo - ${translations.hero_title || 'Gestiona las deudas de tu negocio con facilidad'}`);
+            }
+            if (metaDescription && translations.hero_subtitle) {
+                metaDescription.setAttribute('content', translations.hero_subtitle);
+            }
+            // La imagen usa la misma para todos los idiomas
+        }
+
+        function updateLegalLinks(lang) {
+            const links = [
+                document.getElementById('nav-terms'),
+                document.getElementById('nav-privacy'),
+                document.getElementById('mobile-nav-terms'),
+                document.getElementById('mobile-nav-privacy')
+            ];
+
+            links.forEach(link => {
+                if (link) {
+                    const url = new URL(link.href, window.location.origin);
+                    url.searchParams.set('lang', lang);
+                    link.href = url.toString();
+                }
+            });
+        }
+
+        // Cambiar idioma
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('langSelector').value = lang;
+            loadTranslations(lang);
+            // Actualizar URL sin recargar
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({ path: url.toString() }, '', url.toString());
+            updateLegalLinks(lang);
+        }
+
+        // --- INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sincronizar el selector con el idioma actual
+            document.getElementById('langSelector').value = currentLang;
+            loadTranslations(currentLang);
+        });
     </script>
 
 </body>
